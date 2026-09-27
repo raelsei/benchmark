@@ -118,7 +118,7 @@ a fully developed (Pierson–Moskowitz) state:
 ### 1.3 Directional spreading: Donelan–Banner
 
 ```math
-D(\omega,\theta)=\frac{\beta}{2\tanh(\beta\pi)}\,\operatorname{sech}^2(\beta\theta),
+D(\omega,\theta)=\frac{\beta}{2\tanh(\beta\pi)}\,\mathrm{sech}^2(\beta\theta),
 \qquad
 \beta=\begin{cases}
 2.61\,(\omega/\omega_p)^{1.3} & \omega/\omega_p<0.95\\
@@ -127,7 +127,7 @@ D(\omega,\theta)=\frac{\beta}{2\tanh(\beta\pi)}\,\operatorname{sech}^2(\beta\the
 \end{cases}
 ```
 
-The normalization follows from $`\int_{-\pi}^{\pi}\operatorname{sech}^2(\beta\theta)\,d\theta = 2\tanh(\beta\pi)/\beta`$,
+The normalization follows from $`\int_{-\pi}^{\pi}\mathrm{sech}^2(\beta\theta)\,d\theta = 2\tanh(\beta\pi)/\beta`$,
 so $`\int D\,d\theta = 1`$ and the spreading does not change the energy. At high frequencies
 $`\beta`$ shrinks: short waves spread in all directions, while waves near the peak stay aligned with the
 wind. This is the physical mechanism that rules out "a few repeating waves all moving the same way".
@@ -136,7 +136,7 @@ wind. This is the physical mechanism that rules out "a few repeating waves all m
 
 Swell from a distant storm is a second, narrow JONSWAP component: $`\gamma_s = 4`$,
 $`T_p = 11\ \text{s}`$ ($`\omega_p = 0.5712\ \text{rad/s}`$, $`\lambda_p \approx 189\ \text{m}`$), fixed
-spreading $`\beta_s = 4`$ ($`\operatorname{sech}^2`$ half-power half-width of about 13°), arriving from
+spreading $`\beta_s = 4`$ ($`\mathrm{sech}^2`$ half-power half-width of about 13°), arriving from
 azimuth −24°. Its amplitude is solved from a target significant wave height $`H_s = 0.8\ \text{m}`$. Using
 $`m_0 = \alpha g^2 / (5\omega_p^4)`$ for the PM shape and the approximate JONSWAP peak-enhancement factor
 $`1/(1-0.287\ln\gamma)`$:
@@ -184,7 +184,7 @@ A real surface needs Hermitian symmetry. The time-dependent amplitude is built a
 Variance check (cross terms vanish by independence):
 
 ```math
-\operatorname{Var}\eta=\sum_{\mathbf k}\mathbb E|\hat h|^2
+\mathrm{Var}\eta=\sum_{\mathbf k}\mathbb E|\hat h|^2
 =\sum_{\mathbf k}\tfrac12\bigl[S(\mathbf k)+S(-\mathbf k)\bigr]\Delta k^2
 =\sum_{\mathbf k}S(\mathbf k)\,\Delta k^2\approx m_0
 ```
@@ -364,7 +364,7 @@ $`J<1`$ means compression and $`J\le0`$ means the surface folds over itself. Foa
 $`1-J`$ with a wind-dependent threshold:
 
 ```math
-g=\operatorname{clamp}\!\left(\left(\frac{1-J}{\nu}-\tau(U)\right)G,\;0,\;1\right),
+g=\mathrm{clamp}\!\left(\left(\frac{1-J}{\nu}-\tau(U)\right)G,\;0,\;1\right),
 \qquad
 \tau(U)=0.27-0.005\,U,\qquad G=10
 ```
@@ -390,8 +390,8 @@ the orbital motion together with the surface particle and needs no separate adve
 
 ```math
 \begin{aligned}
-f' &= \operatorname{mix}\!\bigl(f_c,\ \tfrac14\textstyle\sum_{4\text{-neighbors}} f,\ \min(2.5\,\Delta t,\ 0.5)\bigr)\\
-f  &\leftarrow \operatorname{clamp}\!\bigl(f'\,e^{-\kappa\Delta t}+g\,\min(5\Delta t,1),\ 0,\ 1\bigr),\qquad \kappa=0.25\ \mathrm{s^{-1}}
+f' &= \mathrm{mix}\!\bigl(f_c,\ \tfrac14\textstyle\sum_{4\text{-neighbors}} f,\ \min(2.5\,\Delta t,\ 0.5)\bigr)\\
+f  &\leftarrow \mathrm{clamp}\!\bigl(f'\,e^{-\kappa\Delta t}+g\,\min(5\Delta t,1),\ 0,\ 1\bigr),\qquad \kappa=0.25\ \mathrm{s^{-1}}
 \end{aligned}
 ```
 
@@ -402,10 +402,10 @@ blobs under bilinear magnification.
 
 **On-screen combination.** The fragment shader also computes instantaneous crest foam from the total
 Jacobian without the capillary cascade, $`M_F = I+\sum_{c\le2}T_{w,c}`$:
-$`c_F = \operatorname{clamp}\bigl(((1-\det M_F)/\nu - \tau - 0.07)\cdot 4\bigr)`$. The final amount is:
+$`c_F = \mathrm{clamp}\bigl(((1-\det M_F)/\nu - \tau - 0.07)\cdot 4\bigr)`$. The final amount is:
 
 ```math
-a_f=\operatorname{clamp}\Bigl(\max\bigl(\textstyle\sum_c w_c f_c,\ c_F\bigr)\,(0.45+1.1\,p)\Bigr)
+a_f=\mathrm{clamp}\Bigl(\max\bigl(\textstyle\sum_c w_c f_c,\ c_F\bigr)\,(0.45+1.1\,p)\Bigr)
 ```
 
 where $`p`$ is low-frequency value noise (large-scale irregularity). The visible mask is a soft cut at
@@ -543,7 +543,7 @@ w_t\propto\omega_t\max\bigl(v_y-\mathbf s_t\cdot\mathbf v_{xz},\,0\bigr)
 ```
 
 ```math
-L_{\text{refl}}=\frac{\sum_t w_t\,F(\mathbf n_t\!\cdot\!\mathbf v)\,L_{\text{sky}}(\operatorname{reflect}(-\mathbf v,\mathbf n_t),\ \text{lod})}{\sum_t w_t},
+L_{\text{refl}}=\frac{\sum_t w_t\,F(\mathbf n_t\!\cdot\!\mathbf v)\,L_{\text{sky}}(\mathrm{reflect}(-\mathbf v,\mathbf n_t),\ \text{lod})}{\sum_t w_t},
 \qquad
 \bar F=\frac{\sum_t w_tF_t}{\sum_t w_t}
 ```
@@ -553,8 +553,8 @@ mip level:
 
 ```math
 b=2\sqrt{\sigma_t^2+\tfrac14\sigma_v^2},\quad
-\sigma_t^2=\operatorname{tr}\Sigma-\sigma_v^2,\quad
-\text{lod}=\operatorname{clamp}\bigl(\log_2(b/\Delta\theta),\,0,\,7\bigr),\quad
+\sigma_t^2=\mathrm{tr}\Sigma-\sigma_v^2,\quad
+\text{lod}=\mathrm{clamp}\bigl(\log_2(b/\Delta\theta),\,0,\,7\bigr),\quad
 \Delta\theta=\frac{2\pi}{256}
 ```
 
@@ -570,7 +570,7 @@ In deep, clear open ocean, the upwelling light from the water body is weighted b
 ```math
 L_{\text{body}}=\rho\left[E_\odot\,\frac{0.55\,\mu_s+0.45\max(\mathbf n\!\cdot\!\mathbf l,0)}{\pi}+\bar L_{\text{sky}}\right],
 \qquad
-\rho=\operatorname{mix}\bigl(\rho_A,\rho_B,\ 0.6(1-\mathbf n\!\cdot\!\mathbf v)^2\bigr)
+\rho=\mathrm{mix}\bigl(\rho_A,\rho_B,\ 0.6(1-\mathbf n\!\cdot\!\mathbf v)^2\bigr)
 ```
 
 $`\rho_A = (0.0028,\,0.0125,\,0.0290)`$ is navy at steep view angles and $`\rho_B = (0.0030,\,0.0215,\,0.0270)`$
@@ -585,7 +585,7 @@ toward the sun:
 ```math
 L_{\text{sss}}=\mathbf c_{\text{sss}}\,E_\odot\;h^2\;\max(-\mathbf v\!\cdot\!\mathbf l,0)^3\;\bigl(\tfrac12-\tfrac12\,\mathbf n\!\cdot\!\mathbf l\bigr)^2,
 \qquad
-h=\operatorname{clamp}\!\left(\frac{\eta}{\max(0.15,\,H_s a/2)},0,1.6\right)
+h=\mathrm{clamp}\!\left(\frac{\eta}{\max(0.15,\,H_s a/2)},0,1.6\right)
 ```
 
 with $`\mathbf c_{\text{sss}}=(0.010,\,0.060,\,0.050)`$. The three factors mean, in order: only crests,
@@ -759,7 +759,7 @@ gets darker. Measured sky keys: $`\bar L_Y = 0.0109`$ at 2° sun ($`k\approx14.0
 incoming sun irradiance; it blew out the image with a low sun and made it too dark with a high sun.
 
 **White balance.** A partial auto white balance:
-$`w_c = \operatorname{clamp}(Y_E/E_c,\,0.6,\,1.6)^{0.25}`$. At the default sun (19°) this gives the
+$`w_c = \mathrm{clamp}(Y_E/E_c,\,0.6,\,1.6)^{0.25}`$. At the default sun (19°) this gives the
 multiplier $`(0.949,\,1.009,\,1.113)`$; the warmth of a sunset is kept.
 
 **Bloom.** Energy-conserving and very light, using a six-level chain with 13-tap downsampling (Jimenez 2014)
