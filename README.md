@@ -55,3 +55,7 @@ python3 -m http.server 8000
 1. Create `<model>/<task>/` and put the delivered output in it unchanged.
 2. Write its `README.md` with the sections above.
 3. Add a row to the [Index](#index).
+
+## License
+
+[MIT](LICENSE) © 2026 Koray Güler
